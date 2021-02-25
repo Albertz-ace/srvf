@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CFMS</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+             
+          </div>
+
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/transactiondetails">transactiondetails</a></li>
+              <li class="breadcrumb-item active">Edit</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            
+            
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Edit: TRA#<%= transactiondetailsData.id %></h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div id="account-overview" v-cloak>   
+                               
+                        <form form class="well form-horizontal" method= "put" action="edit/<%= transactiondetailsData.id %>">  
+                            <fieldset>  
+
+                              <div class="form-row">
+                                <div class="col-md-2 mb-2">
+                                  <label for="validationTooltip01">Station</label>                
+                                  <select class="custom-select my-2 md-2 mb-6"  name="Station" id="Station" value= "<%= transactiondetailsData.Station %>" >
+                                    <% stationData.forEach((stations) => { %>
+                                      <option  class="<%= stations.Level_Name %>"  value="<%= stations.Level_Name %>"> <%=stations.Level_Name %> </option>
+                                    <%  })  %>
+                                  </select> 
+                                </div>                
+                               
+                                <div class="col-md-2 mb-2">
+                                  <label >District</label>
+                                  <select class="custom-select my-2 md-2 mb-6"  name="District" id="District"  value= "<%= transactiondetailsData.District %>">
+                                                                        
+                                    <% districtData.forEach((districts) => { %>
+                                      <option class="selectors <%= districts.Parent_level %>" value="<%= districts.Level_Name %>" > <%=districts.Level_Name %> </option>
+                                       <%  })  %>
+                                  </select>  
+                                </div> 
+                                <div class="col-md-2 mb-2">
+                                  <label >Pastor</label>
+                                  <select class="custom-select my-2 md-2 mb-6"  id="Pastor" name="Pastor" value= "<%= transactiondetailsData.Pastor %>" >
+                                    
+                                    <% pastorData.forEach((pastors) => { %>
+                                      <option class="selectors <%= pastors.Role %>" value="<%=pastors.FirstName %> <%=pastors.LastName %>" > <%=pastors.FirstName %> <%=pastors.LastName %></option>
+                                       <%  })  %>
+                                  </select>  
+                                </div> 
+                
+                                <div class="col-md-2 mb-2">
+                                  <label >Return Period</label>
+                                  <input name="Return_Period"  id="Return_Period"  class="daterangepicker-field"  value= "<%= transactiondetailsData.Return_Period %>"></input>
+                                
+                                </div>
+                
+                                <div class="col-md-2 mb-2">
+                                  <label >Reporting Period</label>
+                                  <input name="Report_Period" id="Report_Period"  class="daterangepicker-field"   value= "<%= transactiondetailsData.Report_Period %>" ></input>
+                                
+                                </div> 
+                
+                
+                                <div class="col-md-2 mb-2">
+                                  <label >Transaction Date</label>
+                                  <input name="Transaction_Date" id="Transaction_Date"  class="daterangepicker-field"  value= "<%= transactiondetailsData.Transaction_Date %>"   ></input>                
+                                </div> 
+                
+                             </div>
+                                
+                
+                                <br>
+                
+                                <div class="form-row">
+                                  <div class="col-md-2 mb-2">
+                                    <label for="validationTooltip01">Bank</label>                
+                                    <select class="custom-select my-2 md-2 mb-6" name="Bank" id="Bank" name="Bank"  value= "<%= transactiondetailsData.Bank %>">
+                                      <% bankData.forEach((banks) => { %>
+                                        <option  class="<%= banks.Bank_Name %>"  value="<%= banks.Bank_Name %>"> <%=banks.Bank_Name %> </option>
+                                      <%  })  %>
+                                    </select> 
+                                  </div>   
+                                  <div class="col-md-2 mb-2">
+                                    <label >Account Number</label>                
+                                    <select class="custom-select my-2 md-2 mb-6" name="Account_Number" id="Account_Number" value= "<%= transactiondetailsData.Account_Number %>"   >
+                                      <% bankData.forEach((accounts) => { %>
+                                        <option  class="<%= accounts.Account_Number %>"  value="<%= accounts.Account_Number %>"> <%=accounts.Account_Number %> </option>
+                                      <%  })  %>
+                                    </select> 
+                                  </div> 
+                                  <div class="col-md-2 mb-2">
+                                    <label for="validationTooltip01">Mode of Deposit</label>                
+                                    <select class="custom-select my-2 md-2 mb-6"  name="Mode_of_Deposit" id="Mode_of_Deposit"  value= "<%= transactiondetailsData.Mode_of_Deposit %>"  >
+                                      <% paymentmodeData.forEach((paymentmode) => { %>
+                                        <option  class="<%= paymentmode.paymentmode %>"  value="<%= paymentmode.paymentmode %>"> <%=paymentmode.paymentmode %> </option>
+                                      <%  })  %>
+                                    </select> 
+                                  </div> 
+                
+                                  <div class="col-md-2 mb-2">
+                                    <label for="validationTooltip04">Transaction Amount</label>
+                                    <input type="number" class="form-control" name="Amount"  id="Amount"  value= "<%= transactiondetailsData.Amount %>" >
+                                    <div class="invalid-tooltip">
+                                      Please Amount
+                                    </div>
+                                  </div>
+                
+                                  <div class="col-md-2 mb-2">
+                                    <label for="validationTooltip03">Transaction Reference No.</label>
+                                    <input type="text" class="form-control" name="Reference_No" id="Reference_No" value= "<%= transactiondetailsData.Reference_No %>"  >
+                                    <div class="invalid-tooltip">
+                                      Please Enter Reference No.
+                                    </div>
+                                  </div>
+                           
+                                  <div class="col-md-2 mb-2">
+                                    <label for="validationTooltip05">Narration</label>
+                                    <input type="text" class="form-control" name="Narration" id="Narration" value= "<%= transactiondetailsData.Narration %>" >
+                                    <div class="invalid-tooltip">
+                                      Please Enter Narration
+                                    </div>
+                                  </div> 
+                                </div>
+                
+                                <div class="form-row">
+                                  <div class="col-md-2 mb-2">
+                                    <label >Drawer</label>
+                                    <input type="text" class="form-control" name="Drawer" id="Drawer" value= "<%= transactiondetailsData.Drawer %>" >
+                                    <div class="invalid-feedback" v-if="formErrors.Org_description">Please Enter Drawer.</div>
+
+
+                                  </div> 
+                                </div>
+
+                               <div class="form-group">
+                                <label class="col-md-4 control-label"></label>
+                                <div class="col-md-4"><br>
+                                  <a class="btn btn-outline-info" href="/transactiondetails">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCancel&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<ajax-button type="submit" class="btn btn-warning" :syncing="syncing">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</ajax-button>
+                                </div>
+                              </div>          
+                   
+                          </fieldset>  
+                           </form>
+                
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+            
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="../../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../../../plugins/jszip/jszip.min.js"></script>
+<script src="../../../plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../../../plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="../../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../../dist/js/demo.js"></script>
+<!-- Page specific script -->
+
+</body>
+</html>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+
+
+
+ 

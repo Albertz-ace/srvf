@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CFMS</title>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../../plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../../dist/css/jquery.dataTables.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../../dist/css/adminlte.min.css">
+  
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+             
+          </div>
+
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/distribution">distribution</a></li>
+              <li class="breadcrumb-item active">Add</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Funds Distribution</h3>
+              </div>
+
+
+              <!-- /.card-header -->
+                <div class="card-body">
+                  <div id="account-overview" v-cloak> 
+                    <div class="container"> 
+                      <ajax-form  class="well form-horizontal"  method= "post" action="addDistribution" :form-data="formData" >
+                        <fieldset>  
+                          <div class="col-md-2 mb-2">
+                            <label for="validationTooltip04">Distribution ID:</label>
+                            <%DistributionId.forEach(function(dist){%>
+                            <input type="number" class="form-control" id="owner" value= "<%= dist.owner+1 %>"  :class="[formErrors.owner ? 'is-invalid' : '']" v-model.trim="formData.owner" placeholder= "<%= dist.owner+1 %>"  autocomplete="name" disabled>
+                            <% }) %> 
+                            <div class="invalid-tooltip">
+                              Please Enter owner
+                            </div>
+                          </div>
+
+                          <table id="cart" class="table table-hover table-condensed">
+                            <thead>
+                              <tr>
+                                  <th style="width:30%">Fund Type</th>
+                                  <th style="width:10%">Amount</th> 
+                                  <th style="width:10%"></th>
+                              </tr>
+                            </thead> 
+                            <tbody  class="input_fields_wrap"> 
+                              <tr class="table-row">                        
+                                  <div >
+                                    <td>                                               
+                                      <select class="form-control select2" style="width: 100%;" id="fund_Type" name="fund_Type[]"  type="text"  :class="[formErrors.fund_Type ? 'is-invalid' : '']" v-model.trim="formData.fund_Type"  autocomplete="name" >
+                                        <option value="Default"selected="selected">Select Fund Type</option>
+                                        <%fundtypedata.forEach(function(fund){%>
+                                          <option value="<%= fund.fundtype %>"><%= fund.fundtype %></option>
+                                        <% }) %>                                        
+                                    </select> 
+                                    </td>
+                                    <td> 
+                                      <input class="inputclass" id="Amount" name="Amount" type="number" autocomplete="Amount"  type="text"  v-model.trim="formData.Amount"  autocomplete="name" >
+                                      <div class="invalid-feedback" v-if="formErrors.Amount">Enter Amount.</div>
+                                    </td>
+                                  <td><button class=" add_field_button btn btn-info btn-sm"><i class="fa fa-plus"></i></button> 
+                                </td>
+                                  </div>
+                              </tr>
+                            </tbody> 
+                            <tfoot>
+                              <tr class="visible-xs">
+                                <td class="text-center">
+                                  <input class="btn btn-outline-info align-right" id="add" type="button" value="Recalculate" />
+
+                                                        
+                                
+                                </td>
+                              
+                              
+                              
+                                <td class="text-center">
+
+                                <span class="jqValue"></span>
+
+                                  
+                                </td>
+                                <td  >                               
+                                  <a class="btn btn-outline-info" href="/distribution">Cancel&nbsp&nbsp</a>
+
+                               <ajax-button type="submit"  class="btn btn-success" :syncing="syncing">SUBMIT <span class="glyphicon glyphicon-send"></span></ajax-button>
+
+                                
+                                </td>
+                              </tr>
+                          </tfoot>
+
+
+                            </table>
+                      
+                        </fieldset>  
+                      </ajax-form>   
+                      
+                      
+
+                    </div>  
+                 </div>
+                
+                 </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+
+<script src="../../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="../../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../../../plugins/jszip/jszip.min.js"></script>
+<script src="../../../plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../../../plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="../../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../../dist/js/demo.js"></script>
+<!-- Page specific script -->
+
+</body>
+</html>
+
+
+
+<script>
+
+
+  $(function() {
+
+   
+
+
+
+
+  var max_fields = 5; //maximum input boxes allowed
+  var wrapper = $(".input_fields_wrap"); //Fields wrapper
+  var add_button = $(".add_field_button"); //Add button ID
+
+  var x = 1; //initlal text box count
+  $(add_button).click(function(e) {
+    //on add input button click
+    e.preventDefault();
+    if (x < max_fields) {
+      //max input box allowed
+      x++; //text box increment
+      $(wrapper).append(
+
+        '<tr class="table-row"> <div > <td><select class="form-control select2" style="width: 100%;" id="fund_Type" name="fund_Type[]"  type="text" v-model.trim="formData.fund_Type"  autocomplete="name" > <option value="Default"selected="selected">Select Fund Type</option><%fundtypedata.forEach(function(fund){%><option value="<%= fund.fundtype %>"><%= fund.fundtype %></option> <% }) %> </select></td><td>  <input class="inputclass" id="Amount" name="Amount" type="number" autocomplete="Amount"  type="text"  v-model.trim="formData.Amount"  autocomplete="name" ><div class="invalid-feedback" v-if="formErrors.Amount">Enter Amount.</div></td><td> <a href="#" class="remove_field">Remove</a> </td></div> </tr>'
+
+       ); //add input box
+    }
+  });
+
+  $(wrapper).on("click", ".remove_field", function(e) {
+    //user click on remove text
+    e.preventDefault();
+    $(this).closest("tr").remove();
+    x--;
+  });
+  // JQuery sum values
+  function add() {
+    var sum = 0;
+    $(".inputclass").each(function() {      
+        sum += +this.value;
+        $('#sum').val(sum);
+    });
+    return sum; // an add function shouldn't really "alert"
+    }
+    var $jqValue = $('.jqValue');
+    var $jqName = $('#Amount');
+
+
+    $jqName.on('focusout', function(event){
+      $jqValue.html(add());
+    });
+
+
+    $('#add').click(function() {          
+        $jqValue.html(add());
+
+
+
+        var array = [];
+$(".table-row").each(function() {
+    array.push({
+      fund_Type: $(this).val("#fund_Type"),
+      Amount: $(this).val("#Amount")
+    });
+});
+// then to get the JSON string
+var jsonString = JSON.stringify(array);
+console.log(jsonString);
+
+
+    });
+ });
+
+
+
+var array = [];
+var fund_Type;
+var Amount;
+$(".table-row").each(function() {
+    array.push({
+     // fund_Type: $(this).val("#fund_Type"),
+     // Amount: $(this).val("#Amount")
+      fund_Type:$(".inputclass").val(),
+      Amount:$(".inputclass").val()
+    });
+});
+// then to get the JSON string
+var jsonString = JSON.stringify(array);
+console.log(array);
+
+
+
+</script>
+
+
+
+
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+
+
+
+ 

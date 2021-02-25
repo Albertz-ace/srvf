@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CFMS</title>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../../plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../../dist/css/jquery.dataTables.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../../dist/css/adminlte.min.css">
+  
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+             
+          </div>
+
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/distribution">distribution</a></li>
+              <li class="breadcrumb-item active">Edit</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            
+            
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Edit: <%=  %></h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div id="account-overview" v-cloak>   
+                  <form method= "put" action="edit/<%= distributionData.id %>">  
+                    <div class="row">
+                      <div class="col-sm-6">
+
+                        <div class="form-group">                               
+                         <label for="Country">Country</label>
+                          <select class="form-control select2" style="width: 100%;" id="Country" name="Country" type="text" >
+                            <option Value="<%= distributionData.Country %>" ><%= distributionData.Country %></option>
+                            <option value="Kenya">Kenya</option>
+                            <option value="Uganda">Uganda</option>
+                            <option value="Tanzania">Tanzania</option>
+                            <option value="Rwanda">Rwanda</option>
+                            <option value="Ethiopia">Ethiopia</option>
+                            <option value="Sudan">Sudan</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Language</label>
+                          <select class="form-control select2" style="width: 100%;" id="Language" name="Language"  type="text" >
+                            <option value="<%= distributionData.Language %>" selected="selected"><%= distributionData.Language %></option>
+                            <option value="English">English</option>
+                            <option value="Swahili">Swahili</option>
+                            <option value="Luo">Luo</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>Give/ Donate Type</label>
+                          <select class="form-control select2" style="width: 100%;"id="Giving_Type" name="Giving_Type" >
+                            <option value="<%= distributionData.Giving_Type %>" selected="<%= distributionData.Giving_Type %>"><%= distributionData.Giving_Type %></option>
+                            <option value="Give">Give</option>
+                            <option value="Donate">Donate</option>
+                            <option value="Make Pledge">Make Pledge</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>Church</label>
+                          <select class="form-control select2" style="width: 100%;" id="Church" name="Church"  type="text">
+                            <option  value="<%= distributionData.Church %>"selected="selected"><%= distributionData.Church %></option>
+                            <option value="Nairobi West">Nairobi West</option>
+                            <option value="Nairobi South">Nairobi South</option>
+                            <option value="Nairobi Central">Nairobi Central</option>
+                            
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>Payment For?</label>
+                          <select class="form-control select2" style="width: 100%;" id="Payment_For" name="Payment_For"  type="text" >
+                            <option value="<%= distributionData.Payment_For %>" selected="selected"><%= distributionData.Payment_For %></option>
+                            <option value="Another Member" >Self</option>
+                            <option value="Another Member" >Another Member</option>
+                            
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="Church_code">Church Code </label>
+                          <input class="form-control" id="Church_code" name="Church_code" type="text" autocomplete="name"  type="text" value="<%= distributionData.Church_code %>" >
+                          <div class="invalid-feedback" v-if="formErrors.Church_code">Please Church Code.</div>
+                        </div> 
+
+
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="Phone">Phone Number</label>
+                          <input class="form-control" id="Phone" name="Phone" type="text"  Value="<%= distributionData.Phone %>">
+                          <div class="invalid-feedback" v-if="formErrors.Phone">Please enter Phone Number.</div>
+                        </div>
+                       
+                        <div class="form-group">
+                          <label for="Reg_code">Registration Code </label>
+                          <input class="form-control" id="Reg_code" name="Reg_code" type="text"  placeholder="Reg_code" autocomplete="Reg_code"  type="text" Value="<%= distributionData.Reg_code %>">
+                          <div class="invalid-feedback" v-if="formErrors.Reg_code">Please Station.</div>
+                        </div> 
+
+                        <div class="form-group">
+                          <label>Member Type</label>
+                          <select class="form-control select2" style="width: 100%;" id="Member_Type" name="Member_Type"  type="text" >
+                            <option value="<%= distributionData.Member_Type %>"><%= distributionData.Member_Type %></option>
+                            <option value="Member">Member</option>
+                            <option value="Visiting Member">Visiting Member</option>
+                            <option value="Family">Family</option>
+                            <option value="Guest">Guest</option>
+                            <option value="Institution">Institution</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>Giving / Donation Type</label>
+                          <select class="form-control select2" style="width: 100%;" id="Donation_Type" name="Donation_Type"  type="text">
+                         
+                            <option value="<%= distributionData.Donation_Type %>" selected="<%= distributionData.Donation_Type %>"> <%= distributionData.Donation_Type %></option>
+                            <option value="Tithe">Tithe</option>
+                            <option value="Distribution">Distribution</option>
+                            <option value="Tithe & Distribution">Tithe & Distribution</option>
+                            <option value="Camp meeting Distribution">Camp meeting Distribution</option>
+                            <option value="13th Sabbath">13th Sabbath</option>
+                            <option value="Harvesting & Gathering">Harvesting & Gathering</option>
+                            <option value="Conference Developmen">Conference Development</option>
+                            <option value="Local Church Distribution">Local Church Distribution</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>Payment Mode</label>
+                          <select class="form-control select2" style="width: 100%;" id="Payment_Mode" name="Payment_Mode"  type="text">
+                            <option value="<%= distributionData.Payment_For %>" selected="<%= distributionData.Payment_For %>">Mpesa</option>
+                            <option value="Mpesa">Mpesa</option>
+                            <option value="Equitel">Equitel</option>
+                            <option value="Airtel Money">Airtel Money</option>
+                            <option value="T-Cash">T-Cash</option>
+                            <option value="Direct Bank Deposit">Direct Bank Deposit</option>
+                            <option value="Bank Transfer">Bank Transfer</option>                                    
+                          </select>
+                        </div>
+
+
+                        <div class="form-group">
+                          <label for="Amount">Amount</label>
+                          <input class="form-control" id="Amount" name="Amount" type="text" autocomplete="Amount"  type="text" Value="<%= distributionData.Amount %>">
+                          <div class="invalid-feedback" v-if="formErrors.Amount">Please Amount.</div>
+                        </div> 
+                                    
+                      </div>  
+                    </div>
+                   
+                   
+                    <div class="row">
+                         <div class="col-sm-6">
+                                       
+                          </div>
+                          <div class="col-sm-6">
+                               <div class="form-group text-right">
+                                <a class="btn btn-outline-info" href="/distribution">Cancel</a>
+                                <button type="submit" class="btn btn-dark">Save changes</button>
+                               </div>
+                          </div>
+
+                    </div>
+
+                  
+                  
+                  
+                  
+                  
+                  </form>
+                           
+                          
+                     
+                  
+               </div>
+                
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+            
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="../../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../../../plugins/jszip/jszip.min.js"></script>
+<script src="../../../plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../../../plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="../../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../../dist/js/demo.js"></script>
+<!-- Page specific script -->
+
+</body>
+</html>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+
+
+
+ 

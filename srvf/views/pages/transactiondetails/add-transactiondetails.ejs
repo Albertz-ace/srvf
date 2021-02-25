@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CFMS</title>
+
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+  
+</head>
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+             
+          </div>
+
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/transactiondetails">transactiondetails</a></li>
+              <li class="breadcrumb-item active">Add</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+     <!-- Main content -->
+     <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Transaction Details</h3>
+              </div>
+               
+              <div class="card-body">
+                <div id="account-overview" v-cloak>  
+                              
+                  <ajax-form class="well form-horizontal" method= "post" action="addTransactiondetails" :form-data="formData" >
+                 
+                 
+
+
+                    <fieldset>    
+                       <div class="form-row">
+                <div class="col-md-2 mb-2">
+                  <label for="validationTooltip01">Station</label>                
+                  <select class="custom-select my-2 md-2 mb-6"  id="Station" name="stationselected"   :class="[formErrors.Station ? 'is-invalid' : '']" v-model.trim="formData.Station" placeholder="Station" autocomplete="name" >
+                    <% stationData.forEach((stations) => { %>
+                      <option  class="<%= stations.Level_Name %>"  value="<%= stations.Level_Name %>"> <%=stations.Level_Name %> </option>
+                    <%  })  %>
+                  </select> 
+                </div>                
+               
+                <div class="col-md-2 mb-2">
+                  <label >District</label>
+                  <select class="custom-select my-2 md-2 mb-6"  id="District" name="District"   :class="[formErrors.District ? 'is-invalid' : '']" v-model.trim="formData.District" placeholder="District" autocomplete="name" >
+                    <option value="" class="rhth23">Select District</option>
+                    <% districtData.forEach((districts) => { %>
+                      <option class="selectors <%= districts.Parent_level %>" value="<%= districts.Level_Name %>" > <%=districts.Level_Name %> </option>
+                       <%  })  %>
+                  </select>  
+                </div> 
+                <div class="col-md-2 mb-2">
+                  <label >Pastor</label>
+                  <select class="custom-select my-2 md-2 mb-6"  id="Pastor" name="Pastor"   :class="[formErrors.Pastor ? 'is-invalid' : '']" v-model.trim="formData.Pastor" placeholder="Pastor" autocomplete="name" >
+                    <option value="" class="rhth23">Select Pastor</option>
+                    <% pastorData.forEach((pastors) => { %>
+                      <option class="selectors <%= pastors.Role %>" value="<%=pastors.FirstName %> <%=pastors.LastName %>" > <%=pastors.FirstName %> <%=pastors.LastName %></option>
+                       <%  })  %>
+                  </select>  
+                </div> 
+
+                <div class="col-md-2 mb-2">
+                  <label >Return Period</label>
+                  <input id="Return_Period"  class="daterangepicker-field" :class="[formErrors.Return_Period ? 'is-invalid' : '']" v-model.trim="formData.Return_Period" placeholder="Return_Period" autocomplete="name" ></input>
+                
+                </div>
+
+                <div class="col-md-2 mb-2">
+                  <label >Reporting Period</label>
+                  <input id="Report_Period"  class="daterangepicker-field"  :class="[formErrors.Report_Period ? 'is-invalid' : '']" v-model.trim="formData.Report_Period" placeholder="Report_Period" autocomplete="name" ></input>
+                
+                </div> 
+
+
+                <div class="col-md-2 mb-2">
+                  <label >Transaction Date</label>
+                  <input id="Transaction_Date"  class="daterangepicker-field"  :class="[formErrors.Transaction_Date ? 'is-invalid' : '']" v-model.trim="formData.Transaction_Date" placeholder="Transaction Date" autocomplete="name" ></input>                
+                </div> 
+
+             </div>
+                
+
+                <br>
+
+                <div class="form-row">
+                  <div class="col-md-2 mb-2">
+                    <label for="validationTooltip01">Bank</label>                
+                    <select class="custom-select my-2 md-2 mb-6"  id="Bank" name="Bank"   :class="[formErrors.Bank ? 'is-invalid' : '']" v-model.trim="formData.Bank" placeholder="Bank" autocomplete="name">
+                      <% bankData.forEach((banks) => { %>
+                        <option  class="<%= banks.Bank_Name %>"  value="<%= banks.Bank_Name %>"> <%=banks.Bank_Name %> </option>
+                      <%  })  %>
+                    </select> 
+                  </div>   
+                  <div class="col-md-2 mb-2">
+                    <label >Account Number</label>                
+                    <select class="custom-select my-2 md-2 mb-6"  id="Account_Number" name="Account_Number"   :class="[formErrors.Account_Number ? 'is-invalid' : '']" v-model.trim="formData.Account_Number" placeholder="Account Number" autocomplete="name" >
+                      <% bankData.forEach((accounts) => { %>
+                        <option  class="<%= accounts.Account_Number %>"  value="<%= accounts.Account_Number %>"> <%=accounts.Account_Number %> </option>
+                      <%  })  %>
+                    </select> 
+                  </div> 
+                  <div class="col-md-2 mb-2">
+                    <label for="validationTooltip01">Mode of Deposit</label>                
+                    <select class="custom-select my-2 md-2 mb-6"  id="Mode_of_Deposit" name="Mode_of_Deposit"   :class="[formErrors.Mode_of_Deposit ? 'is-invalid' : '']" v-model.trim="formData.Mode_of_Deposit" placeholder="Mode_of_Deposit" autocomplete="name" >
+                      <% paymentmodeData.forEach((paymentmode) => { %>
+                        <option  class="<%= paymentmode.paymentmode %>"  value="<%= paymentmode.paymentmode %>"> <%=paymentmode.paymentmode %> </option>
+                      <%  })  %>
+                    </select> 
+                  </div> 
+
+                  <div class="col-md-2 mb-2">
+                    <label for="validationTooltip04">Transaction Amount</label>
+                    <input type="number" class="form-control" id="Amount"   :class="[formErrors.Amount ? 'is-invalid' : '']" v-model.trim="formData.Amount" placeholder="9000" autocomplete="name" >
+                    <div class="invalid-tooltip">
+                      Please Enter Amount
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 mb-2">
+                    <label for="validationTooltip03">Transaction Reference No.</label>
+                    <input type="text" class="form-control" id="Reference_No" placeholder="Reference No"  :class="[formErrors.Reference_No ? 'is-invalid' : '']" v-model.trim="formData.Reference_No"  autocomplete="name" >
+                    <div class="invalid-tooltip">
+                      Please Enter Reference No.
+                    </div>
+                  </div>
+           
+                  <div class="col-md-2 mb-2">
+                    <label for="validationTooltip05">Narration</label>
+                    <input type="text" class="form-control" id="Narration" :class="[formErrors.Narration ? 'is-invalid' : '']" v-model.trim="formData.Narration" autocomplete="name" >
+                    <div class="invalid-tooltip">
+                      Please Enter Narration
+                    </div>
+                  </div> 
+                </div>
+
+                <div class="form-row">
+                  <div class="col-md-2 mb-2">
+                    <label >Drawer</label>
+                    <input type="text" class="form-control" id="Drawer":class="[formErrors.Drawer ? 'is-invalid' : '']" v-model.trim="formData.Drawer"  autocomplete="name" >
+                    <div class="invalid-tooltip">
+                      Please Enter Drawer.
+                    </div>
+                  </div> 
+                </div>
+                       
+                       <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4"><br>
+                          <a class="btn btn-outline-info" href="/transactiondetails">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCancel&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<ajax-button type="submit" class="btn btn-warning" :syncing="syncing">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</ajax-button>
+                        </div>
+                      </div> 
+  
+           
+                    </fieldset>  
+                 
+                  </ajax-form>                        
+                   </div>  
+         
+              </div>
+
+
+            </div>
+            <!-- /.card-header -->
+          </div>
+        </div>
+      </div>
+
+     </section>
+  </div>
+  </div>
+</body>
+</html>
+
+<script>
+  $(".daterangepicker-field").daterangepicker({
+  forceUpdate: true,
+  callback: function(startDate, endDate, period){
+    var title = startDate.format('L') + ' – ' + endDate.format('L');
+    $(this).val(title)
+  }
+});
+  </script>
+
+  
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+
+

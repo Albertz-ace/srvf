@@ -1,0 +1,134 @@
+<div id="welcome"> 
+  <div class="">  
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Dashboard</h1>
+          </div><!-- /.col -->
+         
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container">       
+        
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-12">
+              
+              <div class="info-box">  
+                          
+                  <span class="info-box-icon bg-info"><i class="fa fa-university"></i>                    
+                  </span>
+                
+                <div class="info-box-content">  
+                  <a href="/organization">              
+                  <span class="info-box-text">Organization Summary</span>
+                  <span class="info-box-number"><%= organizationsData %> </span>
+                </a>  
+                </div>
+           
+             
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+  
+                <div class="info-box-content">
+                  <a href="/user"> 
+                  <span class="info-box-text">User Summary</span>
+                  <span class="info-box-number"><%= userData %> </span>
+                  </a>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-success"><i class="fas fa-church"></i></span>
+  
+                <div class="info-box-content">
+                  <a href="/church">  
+                  <span class="info-box-text">Churches</span>
+                  <span class="info-box-number"></span>
+                  </a>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
+  
+                <div class="info-box-content">
+                <a href="/transactiondetails"> 
+                  <span class="info-box-text">Total Amount Transacted</span>
+                  <span class="info-box-number">KES: <%= Tamount %> </span>
+                </a>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
+  
+                <div class="info-box-content">
+                  <a href="/distribution"> 
+                  <span class="info-box-text">Total Amount Distributed</span>
+                  <span class="info-box-number">KES: <%= Tamountdistributed %> </span>
+                </a>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+          </div>
+        
+        <!-- /.row -->
+
+
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+      
+   
+  </div>
+
+  <router-view></router-view>
+
+ 
+
+</div>
+
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
